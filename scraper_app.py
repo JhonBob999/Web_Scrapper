@@ -1,15 +1,12 @@
-from PyQt5.QtWidgets import QMainWindow, QFileDialog, QPushButton, QInputDialog, QMenu, QDialog
+from PyQt5.QtWidgets import QMainWindow, QFileDialog, QPushButton, QMenu, QDialog
 from PyQt5.QtCore import Qt, QTimer
 # Core import
 from core.exporter import save_to_csv, save_to_excel, export_data_to_json
 from core import cookie_manager
-from core import session_manager
 from core.storage import load_settings, save_settings
 from core.session_controller import SessionController
 # Date import
 from datetime import datetime
-# General import
-import json, os
 # pyright: reportMissingImports=false
 import sip
 
