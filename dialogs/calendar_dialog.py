@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import QDate
 from PyQt5.QtGui import QTextCharFormat, QBrush, QColor
 from datetime import datetime
-from core.session_manager import list_sessions, load_session
+from core.session_service import list_sessions, load_session
 
 
 class CalendarDialog(QDialog):

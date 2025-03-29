@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QTableWidget, QTableWidgetItem, QPushButton, QHBoxLayout, QMessageBox
-from core import session_manager
+from core import session_service
 
 class SessionHistoryDialog(QDialog):
     def __init__(self, parent=None, load_callback=None):
@@ -36,7 +36,7 @@ class SessionHistoryDialog(QDialog):
         self.refresh_table()
 
     def refresh_table(self):
-        sessions = session_manager.list_sessions()
+        sessions = session_service.list_sessions()
         self.table.setRowCount(len(sessions))
 
         for i, session in enumerate(sessions):
@@ -61,7 +61,7 @@ class SessionHistoryDialog(QDialog):
             QMessageBox.warning(self, "Ошибка", "Выберите сессию для загрузки")
             return
 
-        session = session_manager.load_session(path)
+        session = session_service.load_session(path)
         if self.load_callback:
             self.load_callback(session)
         self.accept()
@@ -74,5 +74,5 @@ class SessionHistoryDialog(QDialog):
 
         confirm = QMessageBox.question(self, "Подтверждение", "Удалить выбранную сессию?", QMessageBox.Yes | QMessageBox.No)
         if confirm == QMessageBox.Yes:
-            session_manager.delete_session(path)
+            session_service.delete_session(path)
             self.refresh_table()
