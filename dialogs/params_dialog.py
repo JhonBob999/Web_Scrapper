@@ -1,57 +1,57 @@
-from PyQt5.QtWidgets import QLineEdit, QLabel, QTextEdit, QSpinBox, QMessageBox
-from dialogs.base_dialog import BaseDialog
+from .base_dialog import BaseDialog
 import json
+from PyQt5.QtWidgets import (QLineEdit, QLabel, QTextEdit, QSpinBox, QMessageBox, QDialog)
 
-def show_params_dialog(parent, existing_params=None):
-    existing_params = existing_params or {}
+class ParamsDialog(BaseDialog):
+    def __init__(self, parent=None, existing_params=None):
+        super().__init__(parent, title="Настроить параметры запроса")
 
-    dialog = BaseDialog(parent, title="Настроить параметры запроса")
+        existing_params = existing_params or {}
 
-    # Proxy
-    proxy_input = QLineEdit()
-    proxy_input.setPlaceholderText("http://127.0.0.1:8080")
-    proxy_input.setText(existing_params.get("proxy", ""))
-    dialog.add_widget(QLabel("🔌 Proxy"))
-    dialog.add_widget(proxy_input)
+        # Proxy
+        self.proxy_input = QLineEdit()
+        self.proxy_input.setPlaceholderText("http://127.0.0.1:8080")
+        self.proxy_input.setText(existing_params.get("proxy", ""))
+        self.add_widget(QLabel("🔗 Proxy"))
+        self.add_widget(self.proxy_input)
 
-    # User-Agent
-    ua_input = QLineEdit()
-    ua_input.setPlaceholderText("Mozilla/5.0 ...")
-    ua_input.setText(existing_params.get("user_agent", ""))
-    dialog.add_widget(QLabel("🧠 User-Agent"))
-    dialog.add_widget(ua_input)
+        # User-Agent
+        self.ua_input = QLineEdit()
+        self.ua_input.setPlaceholderText("Mozilla/5.0 ...")
+        self.ua_input.setText(existing_params.get("user_agent", ""))
+        self.add_widget(QLabel("🕶️ User-Agent"))
+        self.add_widget(self.ua_input)
 
-    # Headers (JSON)
-    headers_input = QTextEdit()
-    headers_text = json.dumps(existing_params.get("headers", {}), indent=4, ensure_ascii=False)
-    headers_input.setPlainText(headers_text)
-    dialog.add_widget(QLabel("📦 Headers (в формате JSON)"))
-    dialog.add_widget(headers_input)
+        # Headers
+        self.headers_input = QTextEdit()
+        headers_text = json.dumps(existing_params.get("headers", {}), indent=4, ensure_ascii=False)
+        self.headers_input.setPlainText(headers_text)
+        self.add_widget(QLabel("📦 Headers (в формате JSON)"))
+        self.add_widget(self.headers_input)
 
-    # Timeout
-    timeout_input = QSpinBox()
-    timeout_input.setRange(1, 60)
-    timeout_input.setValue(existing_params.get("timeout", 10))
-    dialog.add_widget(QLabel("⏱ Таймаут (сек)"))
-    dialog.add_widget(timeout_input)
+        # Timeout
+        self.timeout_input = QSpinBox()
+        self.timeout_input.setRange(1, 60)
+        self.timeout_input.setValue(existing_params.get("timeout", 10))
+        self.add_widget(QLabel("⏱️ Таймаут (сек)"))
+        self.add_widget(self.timeout_input)
 
-    def on_accept():
+    def accept(self):
         try:
-            headers = json.loads(headers_input.toPlainText())
+            headers = json.loads(self.headers_input.toPlainText())
         except Exception as e:
-            QMessageBox.warning(dialog, "Ошибка JSON", f"Неверный формат Headers:\n{e}")
+            QMessageBox.critical(self, "Ошибка формата JSON", f"Проверьте JSON:\n{e}")
             return
 
-        dialog.accepted_data = {
-            "proxy": proxy_input.text().strip(),
-            "user_agent": ua_input.text().strip(),
+        self.accepted_data = {
+            "proxy": self.proxy_input.text().strip(),
+            "user_agent": self.ua_input.text().strip(),
             "headers": headers,
-            "timeout": timeout_input.value()
+            "timeout": self.timeout_input.value()
         }
-        dialog.accept()
+        super().accept()
 
-    dialog.buttons.accepted.disconnect()
-    dialog.buttons.accepted.connect(on_accept)
-
-    result = dialog.exec_()
-    return dialog.accepted_data if result == dialog.Accepted else None
+def show_params_dialog(parent, existing_params=None):
+    dialog = ParamsDialog(parent, existing_params)
+    if dialog.exec_() == QDialog.Accepted:
+        return dialog.accepted_data
