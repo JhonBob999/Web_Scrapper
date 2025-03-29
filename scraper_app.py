@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QTimer
 from core.exporter import save_to_csv, save_to_excel, export_data_to_json
 from core import cookie_manager
 from core.storage import load_settings, save_settings
-from core.session_controller import SessionController
+from core.session_service import SessionController
 # Date import
 from datetime import datetime
 # pyright: reportMissingImports=false
