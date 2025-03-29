@@ -1,8 +1,4 @@
 # core/session_controller.py
-
-import os
-import json
-from datetime import datetime
 from core import session_manager
 
 class SessionController:
@@ -39,7 +35,6 @@ class SessionController:
 
     def restore_session(self, session_data):
         from PyQt5.QtWidgets import QTableWidgetItem
-        from datetime import datetime
 
         self.clear_all_tasks()
 
