@@ -18,6 +18,7 @@ from ui.table_utils import (
     add_task_row as base_add_task_row,
     create_save_button
 )
+
 from ui.table_controller import TableController
 from ui import editor_handlers
 from ui.scraper_ui import Ui_MainWindow
