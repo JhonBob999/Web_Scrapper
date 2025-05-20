@@ -14,6 +14,7 @@ from utils.ssl_utils import check_ssl_certificate
 from utils.html_parser_utils import parse_page
 from utils.cve_checker import check_cves_from_headers
 from utils.port_scanner import scan_common_ports
+from utils.js_analyzer import analyze_js_files
 
 from dialogs.page_parse_dialog import PageParseDialog
 
@@ -282,6 +283,7 @@ class SubdomainScanner(QDialog):
             ssl_action = menu.addAction("Check SSL Certificate")
             parse_action = menu.addAction("Parse Page")
             cve_action = menu.addAction("Check CVEs")
+            js_analyze_action = menu.addAction("Analyze JS Files")
 
             selected = menu.exec_(self.ui.treeWidgetJson.viewport().mapToGlobal(position))
 
@@ -296,8 +298,10 @@ class SubdomainScanner(QDialog):
                 self.handle_parse_page(domain)
             elif selected == cve_action:
                 self.handle_check_cves(domain)
+            elif selected == js_analyze_action:
+                self.handle_js_analysis(domain)
 
-                 
+
     def handle_whois_lookup(self, ip_address):
         result = lookup_ip_info(ip_address)
 
@@ -425,10 +429,30 @@ class SubdomainScanner(QDialog):
     def is_probable_domain(self, text):
         return "." in text and not text.startswith("Status:") and not text.startswith("IP:")
 
-        
-        
-###### CONTEXT MENU IPWHOIS FOR QTREEWIDGET SUBDOMAIN
-###### CONTEXT MENU IPWHOIS FOR QTREEWIDGET SUBDOMAIN
+# JAVASCRIPT ANALYSIS ## JAVASCRIPT ANALYSIS #
+# JAVASCRIPT ANALYSIS ## JAVASCRIPT ANALYSIS #        
+
+    def handle_js_analysis(self, domain):
+        result = parse_page(domain)
+        js_files = result.get("Scripts", [])
+        base_url = result.get("URL", "")
+
+        if not js_files:
+            QMessageBox.information(self, "JS Analysis", "No JS files found on page.")
+            return
+
+        analysis = analyze_js_files(js_files, base_url)
+
+        lines = [f"JS Analysis for {domain}", ""]
+        for lib in analysis:
+            lines.append(f"{lib['library']} {lib['version']} → {lib['url']}")
+
+        msg = "\n".join(lines)
+
+        from dialogs.js_selection_dialog import JsSelectionDialog
+        dialog = JsSelectionDialog(domain, js_files, base_url, self)
+        dialog.exec_()
+
 
 
 
