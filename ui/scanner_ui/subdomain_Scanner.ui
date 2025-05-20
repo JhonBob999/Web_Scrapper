@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SubdomainDialog</class>
+ <widget class="QDialog" name="SubdomainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1412</width>
+    <height>784</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Arial</family>
+    <pointsize>9</pointsize>
+    <italic>false</italic>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Domain Subdomain scan</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 9pt &quot;Arial&quot;;</string>
+  </property>
+  <widget class="QLabel" name="labelEnterDomain">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>10</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black; 
+font-weight: bold; 
+font-size: 12px;
+</string>
+   </property>
+   <property name="text">
+    <string>Domain and Subdomain Scanner</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="plainTextEditLogs">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>70</y>
+     <width>431</width>
+     <height>711</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #f5f5f5; 
+color: black; 
+border: 1px solid gray;
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelScanningLogs">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: black; 
+font-weight: bold; 
+font-size: 12px;
+</string>
+   </property>
+   <property name="text">
+    <string>Scanning logs</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBarScan">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>50</y>
+     <width>431</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>9</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: lightgray; 
+color: darkgreen; 
+border-radius: 5px;
+</string>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>429</x>
+     <y>510</y>
+     <width>541</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTabBar::tab { 
+    background-color: lightblue; 
+    color: black; 
+    font-weight: bold; 
+    border: 1px solid gray; 
+    padding: 5px; 
+}
+QTabBar::tab:selected { 
+    background-color: #add8e6; 
+    color: darkblue; 
+}
+</string>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <widget class="QWidget" name="tab_request">
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+    background-color: #f0f8ff;  /* Светло-голубой фон */
+    border: 1px solid lightblue;  /* Синяя рамка */
+}
+QGroupBox {
+    color: darkblue;  /* Синий текст заголовка */
+    font-weight: bold;
+    border: 1px solid lightblue;  /* Синяя рамка группы */
+    background-color: #f9f9f9;  /* Светло-серый фон внутри группы */
+}
+QLabel {
+    color: darkblue;  /* Синий текст */
+    font-weight: bold;
+}
+QLineEdit {
+    background-color: white;  /* Белый фон */
+    color: black;  /* Чёрный текст */
+    border: 1px solid gray;  /* Серая рамка */
+}
+QPushButton {
+    background-color: lightgray;  /* Светло-серый фон */
+    color: black;
+    font-weight: bold;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: lightblue;  /* Светло-голубой при наведении */
+}
+QPushButton:pressed {
+    background-color: #87ceeb;  /* Голубой при нажатии */
+}
+</string>
+    </property>
+    <attribute name="title">
+     <string>Request Settings</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="groupBoxRequests">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="title">
+        <string/>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelMaxReq">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>9</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Maximum requests</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="lineEditInterval"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelTimeOutReq">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>9</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Time-out request</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEditTimeout"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="labelIntervalReq">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>9</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Interval between requests</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="lineEditRequestCount"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLineEdit" name="lineEditRequestLimit"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelReqCount">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>9</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Requests count</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="tab_attack">
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <attribute name="title">
+     <string>Attack settings</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="groupBoxAttackMode">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>9</pointsize>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget {
+    background-color: #e6f7ff;  /* Светло-голубой фон */
+    border: 1px solid gray;  /* Серая рамка */
+}
+QGroupBox {
+    color: darkgreen;  /* Тёмно-зелёный текст */
+    font-weight: bold;
+    border: 1px solid lightgreen;  /* Светло-зелёная рамка */
+    background-color: #f4fff9;  /* Светло-зелёный фон */
+}
+QLabel {
+    color: darkgreen;  /* Тёмно-зелёный текст */
+    font-weight: bold;
+}
+QCheckBox {
+    color: black;  /* Чёрный текст */
+    font-weight: bold;
+}
+QCheckBox::indicator {
+    width: 15px; 
+    height: 15px;
+}
+QPushButton {
+    background-color: lightgray;  /* Светло-серый фон */
+    color: black;
+    font-weight: bold;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: #ccffcc;  /* Светло-зелёный при наведении */
+}
+QPushButton:pressed {
+    background-color: #99ff99;  /* Зелёный при нажатии */
+}
+</string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QCheckBox" name="checkBoxSneakyAttack">
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>9</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Sneaky attack</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxModerateAttack">
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>9</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Moderate attack</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxAggressiveAttack">
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>9</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Aggressive attack</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxShowRequests">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>9</pointsize>
+           <italic>false</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    color: darkgreen;  /* Тёмно-зелёный текст */
+    font-weight: bold;  /* Полужирный шрифт */
+    spacing: 5px;  /* Расстояние между текстом и флажком */
+}
+
+QCheckBox::indicator {
+    width: 15px;  /* Ширина флажка */
+    height: 15px;  /* Высота флажка */
+    background-color: lightgreen;  /* Светло-зелёный фон */
+    border: 1px solid darkgreen;  /* Тёмно-зелёная рамка */
+    border-radius: 3px;  /* Скруглённые края */
+}
+
+QCheckBox::indicator:checked {
+    background-color: #99ff99;  /* Зелёный фон при включении */
+    border: 1px solid darkgreen;  /* Тёмно-зелёная рамка */
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: white;  /* Белый фон при выключении */
+    border: 1px solid gray;  /* Серая рамка */
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Show requests and response</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="tab_output">
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+    background-color: lightblue;  /* Светло-серый фон */
+    border: 1px solid gray;    /* Тонкая серая рамка */
+}
+QLabel {
+    color: darkblue;           /* Синий текст для заголовков */
+    font-weight: bold;
+}
+QPushButton {
+    background-color: lightgray;
+    color: black;
+    font-weight: bold;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: green;  /* Светло-голубой при наведении */
+}
+QPushButton:pressed {
+    background-color: #87ceeb;  /* Голубой при нажатии */
+}
+QLineEdit {
+    background-color: white;
+    color: black;
+    border: 1px solid gray;
+}
+</string>
+    </property>
+    <attribute name="title">
+     <string>Output Settings</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QComboBox" name="comboBoxFormat">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <item>
+        <property name="text">
+         <string>json</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>html</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>txt</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelEnterFile">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>   Enter file name 
+where save output logs. </string>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditFileName">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonSaveFormat">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Save format</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="tab_treeWidget">
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+    background-color: #eef7fa;  /* Светло-голубой фон */
+    border: 1px solid lightblue;
+}
+QPushButton {
+    background-color: lightgray;
+    color: black;
+    font-weight: bold;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    background-color: lightblue;
+}
+QPushButton:pressed {
+    background-color: #87ceeb;
+}
+QTreeWidget {
+    background-color: #f9f9f9;
+    alternate-background-color: #e9f7fc;  /* Чередующиеся строки */
+    border: 1px solid gray;
+}
+QTreeWidget::item {
+    color: black;
+}
+QTreeWidget::item:selected {
+    background-color: #add8e6;
+    color: white;
+}
+</string>
+    </property>
+    <attribute name="title">
+     <string>Json Tree Widget</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QPushButton" name="pushButtonExportJson">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Export json file</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>50</y>
+     <width>541</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: darkblue; 
+font-weight: bold; 
+font-size: 19px;
+</string>
+   </property>
+   <property name="title">
+    <string>Main panel</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <widget class="QLabel" name="labelExample">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: black; 
+font-weight: bold; 
+font-size: 18px;
+</string>
+      </property>
+      <property name="text">
+       <string>Example: fbi.com</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEditDomain">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: white; 
+    color: black; 
+    border: 1px solid gray;
+}
+</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButtonScan">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton { 
+    background-color: lightgray; 
+    color: black; 
+    font-weight: bold; 
+    border: 1px solid gray; 
+    border-radius: 5px; 
+}
+QPushButton:hover { 
+    background-color: green; 
+}
+QPushButton:pressed { 
+    background-color: #87ceeb; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Start attack!</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButtonClearLogs">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton { 
+    background-color: lightgray; 
+    color: black; 
+    font-weight: bold; 
+    border: 1px solid gray; 
+    border-radius: 5px; 
+}
+QPushButton:hover { 
+    background-color: lightblue; 
+}
+QPushButton:pressed { 
+    background-color: #87ceeb; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Clear logs</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButtonStop">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>-1</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton { 
+    background-color: lightgray; 
+    color: black; 
+    font-weight: bold; 
+    border: 1px solid gray; 
+    border-radius: 5px; 
+}
+QPushButton:hover { 
+    background-color: red; 
+}
+QPushButton:pressed { 
+    background-color: #87ceeb; 
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Stop scan</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QTreeWidget" name="treeWidgetJson">
+   <property name="geometry">
+    <rect>
+     <x>970</x>
+     <y>70</y>
+     <width>440</width>
+     <height>711</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>9</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTreeWidget { 
+    background-color: #f9f9f9; 
+    alternate-background-color: #e9f7fc; 
+    border: 1px solid gray; 
+}
+</string>
+   </property>
+   <property name="animated">
+    <bool>false</bool>
+   </property>
+   <column>
+    <property name="text">
+     <string>Subdomains</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEditDomain</tabstop>
+  <tabstop>lineEditFileName</tabstop>
+  <tabstop>checkBoxSneakyAttack</tabstop>
+  <tabstop>checkBoxModerateAttack</tabstop>
+  <tabstop>checkBoxAggressiveAttack</tabstop>
+  <tabstop>checkBoxShowRequests</tabstop>
+  <tabstop>pushButtonScan</tabstop>
+  <tabstop>pushButtonExportJson</tabstop>
+  <tabstop>lineEditTimeout</tabstop>
+  <tabstop>lineEditRequestCount</tabstop>
+  <tabstop>lineEditRequestLimit</tabstop>
+  <tabstop>lineEditInterval</tabstop>
+  <tabstop>treeWidgetJson</tabstop>
+  <tabstop>pushButtonStop</tabstop>
+  <tabstop>plainTextEditLogs</tabstop>
+  <tabstop>comboBoxFormat</tabstop>
+  <tabstop>pushButtonClearLogs</tabstop>
+  <tabstop>pushButtonSaveFormat</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

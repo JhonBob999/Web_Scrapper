@@ -1,0 +1,31 @@
+# 🐍 Python
+__pycache__/
+*.pyc
+
+# 🧪 Virtual Environment
+venv/
+
+# ⚙️ IDE
+.vscode/
+.idea/
+
+# 📂 Temporary / Session data
+cookies/
+sessions/
+results/
+
+# 📊 Exported data
+*.json
+*.csv
+*.png
+*.log
+*.txt
+
+# 🧱 UI leftovers
+*.ui~
+
+# 💻 OS trash
+.DS_Store
+Thumbs.db
+
+

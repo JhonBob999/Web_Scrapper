@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1509</width>
+    <height>790</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Основное окно и вкладки */
+QMainWindow {
+    background-color: #f4f7f6;
+    color: #222831;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+QTabWidget::pane {
+    border: none;
+    background-color: #ffffff;
+}
+
+QTabBar::tab {
+    background-color: #ffffff;
+    color: #222831;
+    padding: 8px 15px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    margin-right: 4px;
+}
+
+QTabBar::tab:selected {
+    background-color: #00adb5;
+    color: #ffffff;
+    border: none;
+}
+
+/* Кнопки */
+QPushButton {
+    background-color: #00adb5;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 6px;
+}
+
+QPushButton:hover {
+    background-color: #028a91;
+}
+
+/* Поля ввода */
+QLineEdit, QTextEdit {
+    background-color: #ffffff;
+    color: #222831;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+/* Таблица и списки */
+QTableWidget, QListWidget {
+    background-color: #ffffff;
+    color: #222831;
+    gridline-color: #f0f0f0;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+}
+
+/* Логи */
+QTextBrowser {
+    background-color: #ffffff;
+    color: #222831;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+}
+
+/* ===== ДОПОЛНЕНИЯ ===== */
+
+/* Label (подписи и текст) */
+QLabel {
+    color: #393e46;
+    font-size: 14px;
+}
+
+/* CheckBox */
+QCheckBox {
+    color: #222831;
+    padding: 3px;
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #00adb5;
+    background-color: #ffffff;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #00adb5;
+    border: none;
+}
+
+/* ComboBox */
+QComboBox {
+    background-color: #ffffff;
+    color: #222831;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #ffffff;
+    selection-background-color: #00adb5;
+    selection-color: #ffffff;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+QToolBar::separator {
+    background-color: #333333;  /* Тёмно-серый / почти чёрный */
+    width: 2px;
+    margin: 4px;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1331</width>
+      <height>741</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Scraper</string>
+     </attribute>
+     <widget class="QTableWidget" name="tasks_table">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1331</width>
+        <height>701</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>№</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>URL</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Selectors</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Methode</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Status</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Action</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Cookies</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Params</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Timer</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Last Run</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_scanner">
+     <attribute name="title">
+      <string>Scanner</string>
+     </attribute>
+     <widget class="QPushButton" name="btn_scan">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Scan</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_dns_scan">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>10</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>DNS Scan</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_certificate_scan">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>50</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Certificate scanner</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>CVE Analysis</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Exploits</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Export</string>
+     </attribute>
+     <widget class="QLabel" name="lbl_export_settings">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>61</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Format:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_export_data">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>120</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Export</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cmb_export_format">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>10</y>
+        <width>151</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>JSON</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CSV</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>XLSX</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QTableWidget" name="table_data_preview">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>150</y>
+        <width>1231</width>
+        <height>571</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_data_preview">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>120</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Data Preview</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_browse_path">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>30</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Browse (QFileDialog)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_data_preview">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Export Path: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_export_path">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>40</y>
+        <width>311</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>[ C:/exports/data.json ]</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_exported_path">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Exported to: </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_success_exported">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>70</y>
+        <width>311</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>[ C:/exports/data.json ]</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="check_flat_table">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>10</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Export in flat format</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Tasks History</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Settings</string>
+     </attribute>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Dark Theme</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Auto-saved after parsing</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>60</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Use proxy rotation</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="proxy_input">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>30</y>
+        <width>231</width>
+        <height>23</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>10</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Type proxy(optional)</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="check_proxy_button">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>60</y>
+        <width>231</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Check proxy</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="safe_button">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>90</y>
+        <width>131</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Safe settings</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="reset_button">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>120</y>
+        <width>131</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reset to default</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLCDNumber" name="lcd_total">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>30</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcd_running">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>90</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcd_success">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>150</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcd_error">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>210</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcd_stopped">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>270</y>
+      <width>64</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Task">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>30</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>All Tasks</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Process">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>90</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>In Process</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Sucessfull">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>150</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sucessfull</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Error">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>210</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ERROR</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Stoped">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>270</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stoped</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_add_task_2"/>
+   <addaction name="action_del_task"/>
+   <addaction name="action_delete_selected_bulk"/>
+   <addaction name="separator"/>
+   <addaction name="action_run_task"/>
+   <addaction name="action_run_selected_bulk"/>
+   <addaction name="separator"/>
+   <addaction name="action_save_selected_bulk"/>
+   <addaction name="action_save_session"/>
+   <addaction name="separator"/>
+   <addaction name="action_manage_sessions"/>
+   <addaction name="action_search_tasks"/>
+   <addaction name="separator"/>
+   <addaction name="action_run_analytics"/>
+   <addaction name="action_open_calendar"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_add_task_2">
+   <property name="text">
+    <string>+ Add Task</string>
+   </property>
+   <property name="toolTip">
+    <string>Add Task</string>
+   </property>
+  </action>
+  <action name="action_del_task">
+   <property name="text">
+    <string>🗑 Delete
+</string>
+   </property>
+  </action>
+  <action name="action_run_task">
+   <property name="text">
+    <string>▶ Run Task
+</string>
+   </property>
+  </action>
+  <action name="action_manage_sessions">
+   <property name="text">
+    <string>📁 Session</string>
+   </property>
+  </action>
+  <action name="action_save_session">
+   <property name="text">
+    <string>💾 Save Session</string>
+   </property>
+  </action>
+  <action name="action_search_tasks">
+   <property name="text">
+    <string>🔍 Search</string>
+   </property>
+  </action>
+  <action name="action_run_selected_bulk">
+   <property name="text">
+    <string>▶ Run Selected</string>
+   </property>
+  </action>
+  <action name="action_delete_selected_bulk">
+   <property name="text">
+    <string>🗑 Delete Selected</string>
+   </property>
+  </action>
+  <action name="action_save_selected_bulk">
+   <property name="text">
+    <string>💾 Save Selected</string>
+   </property>
+  </action>
+  <action name="action_run_analytics">
+   <property name="text">
+    <string>📊 Create Graphics</string>
+   </property>
+  </action>
+  <action name="action_open_calendar">
+   <property name="text">
+    <string>📆 Calendar</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
