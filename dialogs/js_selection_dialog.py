@@ -70,7 +70,7 @@ class JsSelectionDialog(QDialog):
 
     def run_retire_analysis(self):
         from utils.js_downloader import download_js_file
-        from utils.retire_wrapper import analyze_with_retirejs
+        from utils.retire_wrapper import analyze_with_retire
         from dialogs.page_parse_dialog import PageParseDialog
 
         save_dir = "data/js_downloads"
@@ -88,7 +88,7 @@ class JsSelectionDialog(QDialog):
                 results.append(f"[FAIL] {url} → download failed")
                 continue
 
-            res = analyze_with_retirejs(file_path)
+            res = analyze_with_retire(file_path)
             if "error" in res:
                 results.append(f"[FAIL] {url} → {res['error']}")
                 continue
